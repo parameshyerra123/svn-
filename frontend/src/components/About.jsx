@@ -3,23 +3,23 @@ import React from 'react';
 const highlights = [
   {
     icon: 'fa-bolt',
-    title: 'Extreme Velocity & Quality',
-    desc: 'Rapid sprint cycles without compromising code quality, test coverage, or maintainability.'
+    title: 'Fast Turnaround & Quality',
+    desc: 'Quick development cycles without compromising visual quality, responsiveness, or code maintainability.'
   },
   {
     icon: 'fa-code-branch',
-    title: 'Future-Proof Architecture',
-    desc: 'Clean, modular microservices and component patterns designed to scale from 100 to 1,000,000+ users.'
+    title: 'Clean Modern Architecture',
+    desc: 'Modular React components and modern CSS structure built to perform fast across all devices.'
   },
   {
     icon: 'fa-lock',
-    title: 'Bank-Grade Security',
-    desc: 'Strict adherence to OWASP standards, role-based access control (RBAC), and SSL encryption by default.'
+    title: 'Secure & Reliable Standards',
+    desc: 'SSL encryption, secure contact handling, and reliable database storage built into every project.'
   },
   {
     icon: 'fa-handshake',
-    title: 'Dedicated Partnership',
-    desc: 'You work directly with senior engineers and tech leads who treat your product vision as their own.'
+    title: 'Direct Personal Partnership',
+    desc: 'You communicate directly with the developer who understands your goals and treats your project with care.'
   }
 ];
 
@@ -36,15 +36,15 @@ export default function About() {
           <div>
             <span className="section-tag">About SVN Solutions</span>
             <h2 className="section-title" style={{ textAlign: 'left' }}>
-              We Are Creators, Engineers, & <br />
-              <span className="text-gradient">Digital Architects</span>
+              We Build Modern Websites & <br />
+              <span className="text-gradient">Digital Experiences</span>
             </h2>
             <p style={{ color: 'var(--gray-300)', fontSize: '16px', lineHeight: '1.8', marginBottom: '20px' }}>
-              At <strong>SVN Solutions</strong>, we believe every business deserves enterprise-caliber technology.
-              Based in India and serving clients worldwide, our multidisciplinary team of software engineers, app developers, and UI/UX designers transforms ideas into market-dominating applications.
+              At <strong>SVN Solutions</strong>, we specialize in building sleek, high-performing websites and web applications for businesses, creators, and entrepreneurs.
+              Based in India and serving clients worldwide, we bring your ideas to life with clean code and modern design.
             </p>
             <p style={{ color: 'var(--gray-300)', fontSize: '16px', lineHeight: '1.8', marginBottom: '32px' }}>
-              Whether you are an ambitious startup seeking your MVP or an established enterprise modernizing legacy systems, we deliver scalable web apps, intuitive mobile experiences, and secure cloud backends on time and within budget.
+              Whether you need a brand-new business website, an e-commerce store with WhatsApp ordering, or a custom web app, we deliver polished, mobile-friendly websites on time and within budget.
             </p>
 
             <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>

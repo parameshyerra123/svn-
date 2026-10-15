@@ -6,7 +6,7 @@ export default function Contact() {
     name: '',
     email: '',
     phone: '',
-    service: 'Custom Web Application Development',
+    service: 'Custom Website & Web App Development',
     budget: '$1,000 - $5,000',
     message: ''
   });
@@ -312,7 +312,7 @@ export default function Contact() {
                       name: '',
                       email: '',
                       phone: '',
-                      service: 'Custom Web Application Development',
+                      service: 'Custom Website & Web App Development',
                       budget: '$1,000 - $5,000',
                       message: ''
                     });
@@ -427,12 +427,11 @@ export default function Contact() {
                         outline: 'none'
                       }}
                     >
-                      <option>Custom Web Application Development</option>
+                      <option>Custom Website & Web App Development</option>
                       <option>iOS & Android App Development</option>
-                      <option>UI/UX & Interactive Design</option>
-                      <option>E-Commerce & Payment Gateways</option>
-                      <option>Cloud, DevOps & Microservices</option>
-                      <option>24/7 Dedicated Support & Security</option>
+                      <option>UI/UX Design & Website Redesign</option>
+                      <option>E-Commerce & Online Stores</option>
+                      <option>Business Landing Page / Portfolio</option>
                     </select>
                   </div>
 

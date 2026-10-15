@@ -3,45 +3,31 @@ import React from 'react';
 const services = [
   {
     icon: 'fa-laptop-code',
-    tag: 'Web Solutions',
-    title: 'Custom Web Application Development',
-    desc: 'High-performance, responsive web applications engineered with React, Next.js, and Node.js. Built for speed, SEO, and massive scalability.',
-    features: ['Single Page Apps (SPAs)', 'Full-Stack MERN Architecture', 'Custom Admin Dashboards', 'Headless CMS Integration']
+    tag: 'Websites & Apps',
+    title: 'Custom Website & Web App Development',
+    desc: 'Modern, blazing-fast websites and web applications built with React, HTML5, CSS3, and Node.js. Perfectly optimized for Google SEO, mobile devices, and high conversion.',
+    features: ['Business & Company Websites', 'React Single Page Web Apps', 'Fast Loading & Mobile Responsive', 'SEO Optimization & Contact Forms']
   },
   {
     icon: 'fa-mobile-screen-button',
     tag: 'Mobile Apps',
-    title: 'iOS & Android App Development',
-    desc: 'Native and cross-platform mobile apps using React Native and Flutter. Flawless animations, native device features, and offline sync.',
-    features: ['Cross-Platform React Native', 'iOS & Android Store Deployment', 'Real-time Push Notifications', 'Biometric & Secure Storage']
+    title: 'Android & iOS Mobile App Development',
+    desc: 'Functional, high-performance mobile applications built with React Native. Delivering smooth animations, intuitive navigation, and reliable performance on smartphones.',
+    features: ['Android & iOS Compatible', 'Clean & Intuitive User Flow', 'Push Notifications & Messaging', 'Fast App Store Deployment']
   },
   {
     icon: 'fa-compass-drafting',
-    tag: 'Experience Design',
-    title: 'UI/UX & Interactive Design',
-    desc: 'Bespoke user interfaces crafted with precision in Figma. Designed to maximize user engagement, retention, and conversion rates.',
-    features: ['High-Fidelity Wireframes', 'Interactive Clickable Prototypes', 'Complete Design Systems', 'User Research & Journey Mapping']
+    tag: 'Design & Redesign',
+    title: 'UI/UX Design & Website Redesign',
+    desc: 'Transform your existing or new website into a visually captivating, modern digital experience. Clean interfaces crafted to attract and convert your visitors.',
+    features: ['Modern Figma UI/UX Mockups', 'Complete Website Redesigns', 'Mobile-First Responsive Layouts', 'Clear Calls-to-Action (CTAs)']
   },
   {
     icon: 'fa-cart-shopping',
-    tag: 'E-Commerce',
-    title: 'E-Commerce & Payment Gateways',
-    desc: 'Tailor-made e-commerce portals, subscription engines, and automated checkout experiences with Stripe, Razorpay, and PayPal integration.',
-    features: ['Custom Checkout Workflows', 'Multi-Currency & Gateways', 'Inventory & Order Tracking', 'Automated Invoicing & Tax']
-  },
-  {
-    icon: 'fa-cloud',
-    tag: 'Cloud & Infrastructure',
-    title: 'Cloud, DevOps & Microservices',
-    desc: 'Scalable cloud infrastructure on AWS, Google Cloud, and Docker. Zero-downtime CI/CD deployment pipelines with enterprise security.',
-    features: ['Containerization with Docker', 'CI/CD Automated Pipelines', 'Database Optimization & Backups', 'Serverless & Microservices']
-  },
-  {
-    icon: 'fa-shield-halved',
-    tag: 'Maintenance & Care',
-    title: '24/7 Dedicated Support & Security',
-    desc: 'Round-the-clock server monitoring, continuous feature updates, automated security audits, and dedicated SLA support.',
-    features: ['99.9% Uptime Guarantee', 'Proactive Threat Monitoring', 'Performance Tuning & Audits', 'Dedicated Senior Engineer Support']
+    tag: 'Online Stores',
+    title: 'E-Commerce & Online Stores',
+    desc: 'Custom online shops and digital product catalogs equipped with secure payment gateways, WhatsApp ordering, and effortless product management.',
+    features: ['Product Catalog & Shopping Cart', 'Secure Payments (Razorpay, UPI, Stripe)', 'WhatsApp Direct Ordering', 'Order & Inventory Management']
   }
 ];
 
@@ -50,19 +36,19 @@ export default function Services() {
     <section id="services" className="services-section">
       <div className="container">
         <div className="section-header">
-          <span className="section-tag">What We Build</span>
+          <span className="section-tag">Services</span>
           <h2 className="section-title">
-            Engineered For Impact, <br />
-            <span className="text-gradient">Built For Growth</span>
+            Tailored Websites & Apps <br />
+            <span className="text-gradient">Crafted For Your Business</span>
           </h2>
           <p className="section-subtitle">
-            We deliver end-to-end digital solutions tailored to solve complex business challenges with modern software engineering.
+            We build clean, reliable, and modern digital solutions to help your business reach more clients online.
           </p>
         </div>
 
         <div className="services-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '28px'
         }}>
           {services.map((item, idx) => (

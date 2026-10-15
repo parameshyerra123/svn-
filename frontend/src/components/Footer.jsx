@@ -30,7 +30,7 @@ export default function Footer() {
               SVN SOLUTIONS
             </div>
             <p style={{ color: 'var(--gray-300)', fontSize: '14px', lineHeight: '1.7', marginBottom: '20px' }}>
-              Turning visionary ideas into high-performance web applications, scalable mobile apps, and enterprise cloud solutions.
+              Turning ideas into modern, high-performance websites, custom web applications, and mobile apps.
             </p>
             <div style={{ display: 'flex', gap: '12px' }}>
               <a href="https://github.com/parameshyerra123" target="_blank" rel="noreferrer" style={{
@@ -86,7 +86,7 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <li><a href="#services" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>Services</a></li>
               <li><a href="#about" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>About SVN</a></li>
-              <li><a href="#portfolio" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>Case Studies</a></li>
+              <li><a href="#portfolio" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>Portfolio</a></li>
               <li><a href="#process" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>Our Process</a></li>
               <li><a href="#faq" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>FAQ</a></li>
             </ul>
@@ -98,11 +98,11 @@ export default function Footer() {
               Capabilities
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>Custom Web Apps</span></li>
-              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>Mobile App Dev</span></li>
-              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>UI/UX & Prototypes</span></li>
-              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>E-Commerce & Gateways</span></li>
-              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>Cloud & DevOps</span></li>
+              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>Custom Websites & Apps</span></li>
+              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>Mobile App Development</span></li>
+              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>UI/UX & Redesign</span></li>
+              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>E-Commerce & Online Stores</span></li>
+              <li><span style={{ color: 'var(--gray-300)', fontSize: '14px' }}>SEO & Fast Hosting</span></li>
             </ul>
           </div>
 

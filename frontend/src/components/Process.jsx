@@ -18,8 +18,8 @@ const steps = [
   },
   {
     step: '04',
-    title: 'Deployment, Launch & Evolution',
-    desc: 'Zero-downtime production release on cloud infrastructure with automated monitoring, SEO optimization, and ongoing maintenance.'
+    title: 'Deployment, Launch & Support',
+    desc: 'Clean, fast deployment to modern hosting platforms with mobile responsiveness checks, SEO optimization, and launch support.'
   }
 ];
 

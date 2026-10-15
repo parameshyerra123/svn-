@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const words = [
-  'Modern Web Apps',
+  'Modern Websites',
   'iOS & Android Apps',
-  'Full-Stack SaaS',
+  'E-Commerce Stores',
   'UI/UX Experience',
-  'Cloud Architecture'
+  'Custom Web Apps'
 ];
 
 export default function Hero() {
@@ -47,7 +47,7 @@ export default function Hero() {
       <div className="container hero-content" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
         <div className="hero-badge">
           <span className="badge-dot"></span>
-          <span>Premier Software & App Development Studio</span>
+          <span>Professional Web & Mobile App Development</span>
         </div>
 
         <h1 className="hero-title">
@@ -57,8 +57,8 @@ export default function Hero() {
         </h1>
 
         <p className="hero-subtitle">
-          SVN Solutions transforms bold visions into robust, scalable digital realities.
-          We architect cutting-edge web applications, native & hybrid mobile apps, and enterprise software that outperform the competition.
+          SVN Solutions crafts clean, high-performance websites and intuitive mobile applications.
+          We build custom business websites, online stores, and digital tools tailored to grow your brand.
         </p>
 
         <div className="hero-actions" style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
@@ -72,20 +72,20 @@ export default function Hero() {
 
         <div className="hero-stats">
           <div className="stat-card">
-            <div className="stat-number">150+</div>
-            <div className="stat-label">Projects Completed</div>
+            <div className="stat-number">100%</div>
+            <div className="stat-label">Mobile Responsive</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">99.4%</div>
-            <div className="stat-label">Client Satisfaction</div>
+            <div className="stat-number">⚡ Fast</div>
+            <div className="stat-label">Page Speed & SEO</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">24/7</div>
-            <div className="stat-label">Dedicated Support</div>
+            <div className="stat-number">Clean</div>
+            <div className="stat-label">Modern Code & UI</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">5+</div>
-            <div className="stat-label">Years of Mastery</div>
+            <div className="stat-number">Direct</div>
+            <div className="stat-label">Personal Support</div>
           </div>
         </div>
       </div>

@@ -1,49 +1,49 @@
 import React, { useState } from 'react';
 
-const categories = ['All', 'Web Apps', 'Mobile Apps', 'E-Commerce', 'SaaS'];
+const categories = ['All', 'Websites', 'E-Commerce', 'Landing Pages', 'Portfolios'];
 
 const projects = [
   {
-    title: 'NexPay - Global Fintech Dashboard',
-    category: 'Web Apps',
-    desc: 'Enterprise multi-currency payment platform handling real-time crypto & fiat transactions with sub-second latency.',
-    techs: ['React', 'Node.js', 'PostgreSQL', 'WebSockets'],
-    metric: '99.99% Uptime | $12M+ Volume'
+    title: 'Apex Consulting - Corporate Business Website',
+    category: 'Websites',
+    desc: 'Clean, responsive corporate website built for a business consulting agency featuring interactive service showcases, contact inquiry forms, and Google Map integration.',
+    techs: ['React', 'CSS3', 'Vite', 'Responsive'],
+    metric: '⚡ 1.1s Load Time'
   },
   {
-    title: 'PulseFit - AI Fitness & Health App',
-    category: 'Mobile Apps',
-    desc: 'Cross-platform mobile application utilizing on-device pose estimation, workout analytics, and live audio coaching.',
-    techs: ['React Native', 'TensorFlow Lite', 'Express', 'MongoDB'],
-    metric: '500K+ Active Users'
-  },
-  {
-    title: 'Aura Luxe - Fashion & Apparel Store',
+    title: 'Urban Bloom - Boutique E-Commerce Store',
     category: 'E-Commerce',
-    desc: 'High-conversion headless e-commerce store with 3D product previews, instant checkout, and automated fulfillment.',
-    techs: ['Next.js', 'Stripe', 'Tailwind', 'Node.js'],
-    metric: '+42% Checkout Conversion'
+    desc: 'Modern online clothing and accessory store with responsive product catalog, instant cart, direct WhatsApp order checkout, and UPI payment buttons.',
+    techs: ['React', 'Node.js', 'MongoDB', 'WhatsApp API'],
+    metric: '🛍️ WhatsApp Order'
   },
   {
-    title: 'CloudOps - Kubernetes Monitoring Suite',
-    category: 'SaaS',
-    desc: 'Centralized telemetry SaaS for devops teams to visualize clusters, track error budgets, and automate incident alerts.',
-    techs: ['React.js', 'Go API', 'TimescaleDB', 'Docker'],
-    metric: 'Used by 80+ Tech Teams'
+    title: 'The Rustic Fork - Cafe & Restaurant Website',
+    category: 'Websites',
+    desc: 'Appetizing, visual website for a dining cafe featuring a categorized digital food menu, opening hours, table reservation inquiry form, and location map.',
+    techs: ['HTML5', 'CSS3', 'JavaScript', 'Google Maps'],
+    metric: '🍽️ Digital Menu'
   },
   {
-    title: 'CareSync - Telemedicine & Patient Portal',
-    category: 'Web Apps',
-    desc: 'HIPAA-compliant healthcare platform featuring WebRTC video consults, digital prescriptions, and EHR integration.',
-    techs: ['React', 'WebRTC', 'MongoDB Atlas', 'AWS'],
-    metric: '25,000+ Consultations'
+    title: 'Elena Vance - Creative Designer Portfolio',
+    category: 'Portfolios',
+    desc: 'Minimalist personal branding website for a freelance designer with sleek dark mode aesthetics, interactive work showcase, and instant inquiry form.',
+    techs: ['React', 'Vanilla CSS', 'EmailJS'],
+    metric: '🎨 Dark Aesthetic'
   },
   {
-    title: 'FleetTrack - Real-Time Logistics App',
-    category: 'Mobile Apps',
-    desc: 'Real-time GPS tracking and route optimization app for logistics drivers with offline route sync and dispatching.',
-    techs: ['Flutter', 'Google Maps API', 'Node.js', 'Redis'],
-    metric: '30% Fuel Cost Reduction'
+    title: 'IronCore - Fitness Studio Landing Page',
+    category: 'Landing Pages',
+    desc: 'High-energy landing page for a local gym and fitness studio showcasing class schedules, membership pricing tiers, trainer bios, and trial registration.',
+    techs: ['React', 'CSS Grid', 'Vite'],
+    metric: '📱 Mobile Optimized'
+  },
+  {
+    title: 'BrightSmile - Dental Clinic Web Portal',
+    category: 'Landing Pages',
+    desc: 'Trustworthy, clean medical practice website with doctor credentials, treatment guides, patient FAQs, and online appointment booking request.',
+    techs: ['React', 'Express', 'MongoDB Atlas'],
+    metric: '📅 Appointment Form'
   }
 ];
 
@@ -58,13 +58,13 @@ export default function Portfolio() {
     <section id="portfolio" className="portfolio-section">
       <div className="container">
         <div className="section-header">
-          <span className="section-tag">Case Studies</span>
+          <span className="section-tag">Recent Work</span>
           <h2 className="section-title">
-            Featured Projects & <br />
-            <span className="text-gradient">Proven Milestones</span>
+            Websites & Web Apps <br />
+            <span className="text-gradient">Built For Real Businesses</span>
           </h2>
           <p className="section-subtitle">
-            Take a look at how we engineered modern digital products that delivered measurable business value.
+            Explore some of the responsive websites, e-commerce stores, and digital landing pages we have designed and built.
           </p>
 
           <div style={{

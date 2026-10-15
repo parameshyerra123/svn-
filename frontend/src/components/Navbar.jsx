@@ -34,7 +34,6 @@ export default function Navbar() {
           <li><a href="#about" className="nav-link" onClick={closeMenu}>About</a></li>
           <li><a href="#portfolio" className="nav-link" onClick={closeMenu}>Portfolio</a></li>
           <li><a href="#process" className="nav-link" onClick={closeMenu}>Process</a></li>
-          <li><a href="#testimonials" className="nav-link" onClick={closeMenu}>Reviews</a></li>
           <li><a href="#faq" className="nav-link" onClick={closeMenu}>FAQ</a></li>
           <li><a href="#contact" className="nav-link" onClick={closeMenu}>Contact</a></li>
         </ul>

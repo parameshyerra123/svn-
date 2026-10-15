@@ -9,8 +9,8 @@ const techs = [
   { name: 'Next.js', icon: 'fa-solid fa-bolt' },
   { name: 'TypeScript', icon: 'fa-solid fa-code' },
   { name: 'Python', icon: 'fa-brands fa-python' },
-  { name: 'AWS Cloud', icon: 'fa-brands fa-aws' },
-  { name: 'Docker', icon: 'fa-brands fa-docker' },
+  { name: 'HTML5 & CSS3', icon: 'fa-brands fa-css3-alt' },
+  { name: 'JavaScript', icon: 'fa-brands fa-js' },
   { name: 'PostgreSQL', icon: 'fa-solid fa-database' },
   { name: 'Figma UI/UX', icon: 'fa-brands fa-figma' },
 ];

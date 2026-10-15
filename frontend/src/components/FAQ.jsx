@@ -3,23 +3,23 @@ import React, { useState } from 'react';
 const faqs = [
   {
     q: 'What kind of projects does SVN Solutions build?',
-    a: 'We specialize in custom web applications (React, Next.js, Node.js), mobile applications (iOS and Android via React Native & Flutter), enterprise dashboards, e-commerce platforms, and scalable cloud APIs.'
+    a: 'We specialize in modern responsive websites (React, HTML5, CSS3, JavaScript), mobile applications (iOS and Android), e-commerce stores with WhatsApp ordering, business landing pages, and custom web applications.'
   },
   {
-    q: 'How long does a typical software project take?',
-    a: 'A rapid MVP typically takes between 2 to 4 weeks. Medium to large enterprise platforms usually range from 6 to 12 weeks depending on scope, integrations, and compliance requirements.'
+    q: 'How long does a typical website project take?',
+    a: 'A custom business landing page or portfolio typically takes 3 to 7 days. Full-featured e-commerce stores and custom web applications usually take 2 to 4 weeks depending on features and design complexity.'
   },
   {
-    q: 'How does payment and billing work?',
-    a: 'We work on milestone-based fixed pricing or flexible bi-weekly agile sprint models. Payments are structured upon deliverables so you always see working software before release.'
+    q: 'How does payment and pricing work?',
+    a: 'We offer straightforward, milestone-based pricing with no hidden charges. Payments are structured upon deliverables so you always see progress before final handover.'
   },
   {
-    q: 'Do you offer ongoing maintenance and support after launch?',
-    a: 'Yes! We provide dedicated SLA maintenance packages including 24/7 server monitoring, performance audits, automated backups, and continuous feature development.'
+    q: 'Do you offer ongoing support after launch?',
+    a: 'Yes! We provide dedicated post-launch support including bug fixes, minor content updates, speed optimization, and assistance to keep your website running smoothly.'
   },
   {
-    q: 'Who owns the intellectual property (IP) and source code?',
-    a: 'You do 100%. Upon completion and milestone settlement, all source code, assets, design files, and documentation belong completely to your company.'
+    q: 'Who owns the website source code and design?',
+    a: 'You do 100%. Upon project completion, all source code, assets, design files, and credentials belong completely to you.'
   }
 ];
 
