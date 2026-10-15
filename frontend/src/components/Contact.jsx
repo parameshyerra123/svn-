@@ -24,8 +24,17 @@ export default function Contact() {
     setError('');
 
     try {
-      // Pure HTTP POST to the separate Express Backend API
-      const response = await fetch('/api/contact', {
+      // Determines endpoint dynamically:
+      // - Custom env VITE_API_URL if set
+      // - Direct Render backend URL if running on Vercel (*.vercel.app)
+      // - Relative /api/contact for local Vite proxy or Render unified build
+      const apiUrl = import.meta.env.VITE_API_URL 
+        ? `${import.meta.env.VITE_API_URL}/api/contact`
+        : (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app'))
+          ? 'https://svn-w29o.onrender.com/api/contact'
+          : '/api/contact';
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

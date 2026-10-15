@@ -21,12 +21,13 @@ app.use(helmet({
   contentSecurityPolicy: false, // Allows custom inline styles and scripts
 }));
 
-// CORS - Allow frontend to talk to backend
+// CORS - Allow Vercel frontend or any origin to communicate with backend
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
+app.options('*', cors());
 
 // Rate limiting - prevent spam
 const limiter = rateLimit({
@@ -67,13 +68,24 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Universal SPA fallback route (works reliably across Express v4 and v5)
+// Universal root & SPA route - Never return 404!
 app.use((req, res, next) => {
   if (req.method === 'GET' && !req.path.startsWith('/api')) {
     const indexPath = path.join(frontendPath, 'index.html');
     if (fs.existsSync(indexPath)) {
       return res.sendFile(indexPath);
     }
+    // If backend is running standalone on Render (with frontend on Vercel)
+    return res.status(200).json({
+      status: 'online',
+      service: 'SVN Solutions Backend API',
+      database: getDbStatus() ? 'MongoDB Atlas Connected' : 'Connecting...',
+      endpoints: {
+        health: '/api/health',
+        contact: '/api/contact'
+      },
+      message: 'Backend API is running. Connected with Vercel frontend.'
+    });
   }
   next();
 });
