@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const Contact = require('../models/Contact');
+const { getDbStatus } = require('../config/db');
 require('dotenv').config();
 
 // Input sanitizer helper
 function sanitize(str) {
   if (typeof str !== 'string') return '';
-  return str.replace(/[<>\"'&]/g, '').trim().substring(0, 1000);
+  return str.replace(/[<>\"'&]/g, '').trim().substring(0, 2000);
 }
 
-// POST /api/contact
+// POST /api/contact - Submit inquiry
 router.post('/', async (req, res) => {
   try {
     const { name, email, phone, service, budget, message } = req.body;
@@ -37,110 +39,133 @@ router.post('/', async (req, res) => {
       phone: sanitize(phone || 'Not provided'),
       service: sanitize(service || 'General Inquiry'),
       budget: sanitize(budget || 'Not specified'),
-      message: sanitize(message)
+      message: sanitize(message),
+      ipAddress: req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress
     };
 
-    // Create transporter (use Gmail or any SMTP)
-    // Configure in .env file: EMAIL_USER, EMAIL_PASS, CONTACT_EMAIL
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER || 'your-email@gmail.com',
-        pass: process.env.EMAIL_PASS || 'your-app-password'
+    // 1. Save to MongoDB Database (if DB is connected)
+    let savedInquiry = null;
+    if (getDbStatus()) {
+      try {
+        savedInquiry = await Contact.create(cleanData);
+        console.log(`📦 Saved inquiry to MongoDB (ID: ${savedInquiry._id})`);
+      } catch (dbErr) {
+        console.warn('⚠️  Could not save to MongoDB:', dbErr.message);
       }
-    });
-
-    // Email to SVN Solutions team
-    const teamMailOptions = {
-      from: `"SVN Solutions Website" <${process.env.EMAIL_USER || 'noreply@svnsolutions.com'}>`,
-      to: process.env.CONTACT_EMAIL || 'contact@svnsolutions.com',
-      subject: `🚀 New Project Inquiry from ${cleanData.name}`,
-      html: `
-        <!DOCTYPE html>
-        <html>
-        <head><meta charset="UTF-8"></head>
-        <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #ff6b00, #ffca00); padding: 2px; border-radius: 12px;">
-            <div style="background: #111; border-radius: 10px; padding: 30px;">
-              <h1 style="color: #ff6b00; margin: 0 0 20px;">🚀 New Inquiry - SVN Solutions</h1>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr><td style="padding: 10px 0; border-bottom: 1px solid #222; color: #aaa; width: 40%;">👤 Name</td><td style="padding: 10px 0; border-bottom: 1px solid #222; font-weight: bold;">${cleanData.name}</td></tr>
-                <tr><td style="padding: 10px 0; border-bottom: 1px solid #222; color: #aaa;">📧 Email</td><td style="padding: 10px 0; border-bottom: 1px solid #222;"><a href="mailto:${cleanData.email}" style="color: #ff6b00;">${cleanData.email}</a></td></tr>
-                <tr><td style="padding: 10px 0; border-bottom: 1px solid #222; color: #aaa;">📱 Phone</td><td style="padding: 10px 0; border-bottom: 1px solid #222;">${cleanData.phone}</td></tr>
-                <tr><td style="padding: 10px 0; border-bottom: 1px solid #222; color: #aaa;">🛠️ Service</td><td style="padding: 10px 0; border-bottom: 1px solid #222; color: #ffca00;">${cleanData.service}</td></tr>
-                <tr><td style="padding: 10px 0; border-bottom: 1px solid #222; color: #aaa;">💰 Budget</td><td style="padding: 10px 0; border-bottom: 1px solid #222;">${cleanData.budget}</td></tr>
-              </table>
-              <div style="margin-top: 20px; padding: 15px; background: #1a1a1a; border-left: 3px solid #ff6b00; border-radius: 4px;">
-                <p style="color: #aaa; margin: 0 0 8px;">📝 Message:</p>
-                <p style="margin: 0; line-height: 1.6;">${cleanData.message}</p>
-              </div>
-              <p style="color: #555; font-size: 12px; margin-top: 20px;">Received: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST</p>
-            </div>
-          </div>
-        </body>
-        </html>
-      `
-    };
-
-    // Auto-reply to the client
-    const clientMailOptions = {
-      from: `"SVN Solutions" <${process.env.EMAIL_USER || 'noreply@svnsolutions.com'}>`,
-      to: cleanData.email,
-      subject: '✅ We received your message - SVN Solutions',
-      html: `
-        <!DOCTYPE html>
-        <html>
-        <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #ff6b00, #ffca00); padding: 2px; border-radius: 12px;">
-            <div style="background: #111; border-radius: 10px; padding: 30px; text-align: center;">
-              <h1 style="color: #ff6b00; font-size: 28px;">SVN Solutions</h1>
-              <p style="font-size: 18px; color: #ffca00;">Thank you, ${cleanData.name}! 🎉</p>
-              <p style="color: #ccc; line-height: 1.8;">We've received your inquiry and our team will get back to you within <strong style="color: #ff6b00;">24-48 hours</strong>.</p>
-              <div style="margin: 25px 0; padding: 20px; background: #1a1a1a; border-radius: 8px;">
-                <p style="margin: 0; color: #aaa;">Your Service Request: <strong style="color: #ffca00;">${cleanData.service}</strong></p>
-              </div>
-              <a href="https://svnsolutions.com" style="display: inline-block; background: linear-gradient(135deg, #ff6b00, #ffca00); color: #000; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-top: 15px;">Visit Our Website</a>
-              <p style="color: #555; font-size: 12px; margin-top: 30px;">© 2024 SVN Solutions. All rights reserved.</p>
-            </div>
-          </div>
-        </body>
-        </html>
-      `
-    };
-
-    // Try to send emails (won't fail the request if email not configured)
-    try {
-      await transporter.sendMail(teamMailOptions);
-      await transporter.sendMail(clientMailOptions);
-    } catch (emailErr) {
-      console.log('Email service not configured yet. Form data captured:', cleanData);
+    } else {
+      console.log('ℹ️  MongoDB not connected, logging inquiry to console:');
     }
 
-    // Log the inquiry to console (you can add DB here later)
-    console.log(`\n[${new Date().toISOString()}] New Inquiry Received:`);
-    console.log(`  Name: ${cleanData.name}`);
-    console.log(`  Email: ${cleanData.email}`);
-    console.log(`  Service: ${cleanData.service}`);
-    console.log(`  Message: ${cleanData.message.substring(0, 100)}...`);
+    // Always log inquiry to console
+    console.log(`\n📬 [${new Date().toLocaleString()}] New Inquiry Received:`);
+    console.log(`  👤 Name:    ${cleanData.name}`);
+    console.log(`  📧 Email:   ${cleanData.email}`);
+    console.log(`  📱 Phone:   ${cleanData.phone}`);
+    console.log(`  🛠️ Service: ${cleanData.service}`);
+    console.log(`  💰 Budget:  ${cleanData.budget}`);
+    console.log(`  📝 Message: ${cleanData.message}\n`);
+
+    // 2. Send email notification (if SMTP is configured)
+    const emailUser = process.env.EMAIL_USER;
+    const emailPass = process.env.EMAIL_PASS;
+    const contactEmail = process.env.CONTACT_EMAIL || emailUser;
+
+    if (emailUser && emailPass && !emailPass.includes('your-app-password')) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: emailUser,
+          pass: emailPass
+        }
+      });
+
+      const teamMailOptions = {
+        from: `"SVN Solutions" <${emailUser}>`,
+        to: contactEmail,
+        subject: `🚀 New Project Inquiry from ${cleanData.name} - ${cleanData.service}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; padding: 20px; border-radius: 12px; border: 1px solid #ff6b00;">
+            <h1 style="color: #ff6b00; margin: 0 0 16px;">🚀 New SVN Solutions Inquiry</h1>
+            <table style="width: 100%; border-collapse: collapse; color: #eee;">
+              <tr><td style="padding: 8px 0; color: #888;">Name:</td><td><strong>${cleanData.name}</strong></td></tr>
+              <tr><td style="padding: 8px 0; color: #888;">Email:</td><td><a href="mailto:${cleanData.email}" style="color: #ff6b00;">${cleanData.email}</a></td></tr>
+              <tr><td style="padding: 8px 0; color: #888;">Phone:</td><td>${cleanData.phone}</td></tr>
+              <tr><td style="padding: 8px 0; color: #888;">Service:</td><td><strong style="color: #ffca00;">${cleanData.service}</strong></td></tr>
+              <tr><td style="padding: 8px 0; color: #888;">Budget:</td><td>${cleanData.budget}</td></tr>
+            </table>
+            <div style="margin-top: 16px; padding: 12px; background: #161616; border-left: 3px solid #ff6b00; border-radius: 4px;">
+              <p style="margin: 0 0 6px; color: #888; font-size: 13px;">Message:</p>
+              <p style="margin: 0; line-height: 1.6;">${cleanData.message}</p>
+            </div>
+            <p style="color: #555; font-size: 12px; margin-top: 16px;">Submitted at: ${new Date().toISOString()}</p>
+          </div>
+        `
+      };
+
+      const clientMailOptions = {
+        from: `"SVN Solutions" <${emailUser}>`,
+        to: cleanData.email,
+        subject: 'Thank you for reaching out to SVN Solutions!',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; padding: 30px; text-align: center; border-radius: 12px;">
+            <h1 style="color: #ff6b00; margin-bottom: 8px;">SVN Solutions</h1>
+            <h2 style="color: #ffca00; font-weight: normal; margin-top: 0;">Thank you, ${cleanData.name}! 🎉</h2>
+            <p style="color: #ccc; line-height: 1.8;">We have received your project inquiry for <strong>${cleanData.service}</strong>. Our expert team will review it and get back to you within 24 hours.</p>
+            <p style="color: #888; font-size: 13px; margin-top: 30px;">© SVN Solutions - Turning Visions into High-Performance Digital Realities</p>
+          </div>
+        `
+      };
+
+      try {
+        await transporter.sendMail(teamMailOptions);
+        await transporter.sendMail(clientMailOptions);
+        console.log('📧 Notification emails sent successfully');
+      } catch (mailErr) {
+        console.warn('⚠️  Email delivery skipped or failed:', mailErr.message);
+      }
+    }
 
     res.status(200).json({
       success: true,
-      message: `Thank you ${cleanData.name}! We'll contact you within 24-48 hours.`
+      message: `Thank you ${cleanData.name}! We've received your request and will contact you shortly.`,
+      savedToDb: !!savedInquiry
     });
 
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.error('Contact route error:', error);
     res.status(500).json({
       success: false,
-      message: 'Server error. Please try again or email us directly.'
+      message: 'Server error. Please try again or contact us directly at +91 63002 40474.'
     });
   }
 });
 
-// GET /api/contact - Check if endpoint is live
+// GET /api/contact/all - List inquiries (MongoDB)
+router.get('/all', async (req, res) => {
+  try {
+    if (!getDbStatus()) {
+      return res.status(503).json({
+        success: false,
+        message: 'MongoDB is not currently connected. Set MONGODB_URI to view stored inquiries.'
+      });
+    }
+
+    const inquiries = await Contact.find().sort({ createdAt: -1 }).limit(50);
+    res.json({
+      success: true,
+      count: inquiries.length,
+      data: inquiries
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// GET /api/contact - Endpoint status
 router.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     status: 'Contact API is live',
+    database: getDbStatus() ? 'Connected (MongoDB Atlas)' : 'Not connected',
     company: 'SVN Solutions'
   });
 });

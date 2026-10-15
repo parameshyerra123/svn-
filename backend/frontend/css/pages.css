@@ -1,0 +1,215 @@
+/* ============================================================
+   SVN Solutions - Additional Pages Styles
+   For: About, Services, Portfolio, Contact pages
+   ============================================================ */
+
+/* ===== PAGE HERO (Inner Pages) ===== */
+.page-hero {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 140px 24px 80px;
+  background: var(--black-2);
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  font-family: var(--font-secondary);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.page-hero p {
+  font-size: 18px;
+  color: var(--gray-300);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--gray-500);
+}
+
+.breadcrumb a { color: var(--orange); }
+.breadcrumb i { font-size: 10px; }
+
+/* ===== TEAM SECTION ===== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.team-card {
+  background: var(--black-3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.team-card:hover {
+  border-color: rgba(255, 107, 0, 0.3);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
+}
+
+.team-avatar {
+  height: 200px;
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-weight: 800;
+  color: #000;
+}
+
+.team-info {
+  padding: 24px;
+}
+
+.team-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.team-info .team-role { color: var(--orange); font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+.team-info p { font-size: 14px; color: var(--gray-300); line-height: 1.6; }
+
+/* ===== FAQ SECTION ===== */
+.faq-list {
+  max-width: 750px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--black-3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.faq-item.open {
+  border-color: rgba(255, 107, 0, 0.3);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-primary);
+  transition: var(--transition);
+}
+
+.faq-question:hover { color: var(--orange); }
+.faq-question i { color: var(--orange); transition: var(--transition); flex-shrink: 0; }
+.faq-item.open .faq-question i { transform: rotate(180deg); }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-item.open .faq-answer { max-height: 300px; }
+
+.faq-answer p {
+  padding: 0 24px 20px;
+  font-size: 15px;
+  color: var(--gray-300);
+  line-height: 1.7;
+}
+
+/* ===== COOKIE CONSENT ===== */
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 500px;
+  background: var(--black-3);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  z-index: 5000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: slideUp 0.5s ease;
+  display: none;
+}
+
+.cookie-banner.visible { display: flex; flex-direction: column; gap: 14px; }
+
+.cookie-banner p {
+  font-size: 14px;
+  color: var(--gray-300);
+  line-height: 1.6;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 12px;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  z-index: 100;
+}
+
+.whatsapp-float a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 28px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: var(--transition);
+  animation: whatsappPulse 2s ease infinite;
+}
+
+.whatsapp-float a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes whatsappPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 4px 40px rgba(37, 211, 102, 0.7); }
+}

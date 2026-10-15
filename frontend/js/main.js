@@ -7,7 +7,8 @@
  */
 
 // ===== CONFIG =====
-const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+// Works on port 3000, 3001, Render, or any domain automatically!
+const API_BASE = window.location.protocol === 'file:'
   ? 'http://localhost:3000/api'
   : '/api';
 
@@ -589,7 +590,7 @@ function setCurrentYear() {
 
 // ===== WHATSAPP FLOAT =====
 function initWhatsApp() {
-  const phone = '919876543210'; // Update with real number (country code + number, no +)
+  const phone = '916300240474'; // SVN Solutions real number
   const message = encodeURIComponent('Hello SVN Solutions! I would like to discuss a project.');
 
   const whatsappEl = document.getElementById('social-whatsapp');

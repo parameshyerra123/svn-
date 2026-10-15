@@ -19,3 +19,5 @@ services:
         value: parameshyarra80@gmail.com
       - key: COMPANY_NAME
         value: SVN Solutions
+      - key: COMPANY_PHONE
+        value: "+91-6300240474"
