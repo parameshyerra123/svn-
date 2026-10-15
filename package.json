@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "build": "npm install && cd backend && npm install"
+    "dev:backend": "node backend/server.js",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "node backend/server.js",
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install"
   },
   "dependencies": {
     "body-parser": "^2.3.0",
@@ -21,7 +23,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["web-development", "app-development", "svn-solutions"],
+  "keywords": ["web-development", "app-development", "svn-solutions", "react"],
   "author": "SVN Solutions",
   "license": "ISC"
 }

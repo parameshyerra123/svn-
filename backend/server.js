@@ -40,14 +40,15 @@ app.use('/api/', limiter);
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
-// Determine correct frontend path regardless of where the server is executed
+// Determine correct frontend path (prioritizes React production build in dist/)
 const possibleFrontendPaths = [
+  path.join(__dirname, '../frontend/dist'),
+  path.join(process.cwd(), 'frontend/dist'),
   path.join(__dirname, '../frontend'),
-  path.join(__dirname, 'frontend'),
   path.join(process.cwd(), 'frontend')
 ];
 
-let frontendPath = possibleFrontendPaths.find(p => fs.existsSync(p)) || path.join(__dirname, '../frontend');
+let frontendPath = possibleFrontendPaths.find(p => fs.existsSync(p)) || path.join(__dirname, '../frontend/dist');
 console.log(`📁 Serving frontend static files from: ${frontendPath}`);
 app.use(express.static(frontendPath));
 
