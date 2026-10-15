@@ -1,0 +1,13 @@
+{
+  "name": "svn-solutions-backend",
+  "version": "1.0.0",
+  "description": "SVN Solutions - Express Backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "SVN Solutions",
+  "license": "ISC"
+}

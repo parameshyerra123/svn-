@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SVN Solutions - Premium Web Development, App Development, UI/UX Design & E-Commerce solutions. We build digital products that scale. Contact us today." />
+  <meta name="keywords" content="web development, app development, UI/UX design, e-commerce, software solutions, SVN Solutions, India" />
+  <meta name="author" content="SVN Solutions" />
+  <meta property="og:title" content="SVN Solutions - Software Development Company" />
+  <meta property="og:description" content="We build powerful web apps, mobile apps, and digital experiences that transform businesses." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#ff6b00" />
+  <title>SVN Solutions | Web & App Development Company</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔶</text></svg>" />
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">SVN</div>
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <div class="preloader-text">Loading SVN Solutions...</div>
+    </div>
+  </div>
+
+  <!-- ===== CURSOR ===== -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2L34 11V25L18 34L2 25V11L18 2Z" fill="url(#logoGrad)" />
+            <path d="M18 8L12 14L18 18L24 14L18 8Z" fill="#000" opacity="0.5" />
+            <path d="M18 18L12 22L18 28L24 22L18 18Z" fill="#000" opacity="0.3" />
+            <defs>
+              <linearGradient id="logoGrad" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#ff6b00"/>
+                <stop offset="100%" stop-color="#ffca00"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">SVN</span>
+          <span class="logo-sub">Solutions</span>
+        </div>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="#process" class="nav-link">Process</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="#contact" class="btn-primary btn-sm">Get a Quote</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+    </div>
+
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Available for new projects in 2024</span>
+      </div>
+
+      <h1 class="hero-title">
+        We Build Digital
+        <span class="hero-highlight">
+          <span id="typed-text"></span><span class="cursor-blink">|</span>
+        </span>
+        That <span class="hero-gradient">Scale.</span>
+      </h1>
+
+      <p class="hero-desc">
+        SVN Solutions crafts premium web applications, mobile apps, and UI/UX experiences
+        that transform your vision into powerful digital reality. From startups to enterprises — we deliver excellence.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary btn-lg">
+          <i class="fas fa-rocket"></i>
+          Explore Services
+        </a>
+        <a href="#contact" class="btn-outline btn-lg">
+          <i class="fas fa-comments"></i>
+          Free Consultation
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-count="50">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Projects Done</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="30">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="4">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="100">0</span><span class="stat-plus">%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE / TECH STACK ===== -->
+  <section class="marquee-section">
+    <div class="marquee-label">Technologies We Master</div>
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span>⚛️ React</span>
+        <span>🟢 Node.js</span>
+        <span>📱 React Native</span>
+        <span>🟨 JavaScript</span>
+        <span>🐍 Python</span>
+        <span>☁️ AWS</span>
+        <span>🐳 Docker</span>
+        <span>🗄️ MongoDB</span>
+        <span>🔷 TypeScript</span>
+        <span>🛒 Shopify</span>
+        <span>⚡ Next.js</span>
+        <span>🎨 Figma</span>
+        <span>📊 MySQL</span>
+        <span>🔥 Firebase</span>
+        <span>⚛️ React</span>
+        <span>🟢 Node.js</span>
+        <span>📱 React Native</span>
+        <span>🟨 JavaScript</span>
+        <span>🐍 Python</span>
+        <span>☁️ AWS</span>
+        <span>🐳 Docker</span>
+        <span>🗄️ MongoDB</span>
+        <span>🔷 TypeScript</span>
+        <span>🛒 Shopify</span>
+        <span>⚡ Next.js</span>
+        <span>🎨 Figma</span>
+        <span>📊 MySQL</span>
+        <span>🔥 Firebase</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-card-stack">
+            <div class="about-card card-main">
+              <div class="card-icon"><i class="fas fa-code"></i></div>
+              <div class="card-info">
+                <span class="card-title">Clean Code</span>
+                <span class="card-sub">Enterprise-grade quality</span>
+              </div>
+            </div>
+            <div class="about-card card-float-1">
+              <div class="card-icon small"><i class="fas fa-mobile-alt"></i></div>
+              <span>Mobile First</span>
+            </div>
+            <div class="about-card card-float-2">
+              <div class="card-icon small"><i class="fas fa-bolt"></i></div>
+              <span>Fast Delivery</span>
+            </div>
+            <div class="about-card card-float-3">
+              <i class="fas fa-star"></i>
+              <span>5-Star Rated</span>
+            </div>
+            <div class="about-circle"></div>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <div class="section-tag">About SVN Solutions</div>
+          <h2 class="section-title">
+            Building Tomorrow's Digital <span class="text-gradient">Experiences</span> Today
+          </h2>
+          <p class="section-desc">
+            SVN Solutions is a full-service software company dedicated to crafting high-performance digital products. 
+            We combine cutting-edge technology with thoughtful design to deliver solutions that don't just meet expectations — they exceed them.
+          </p>
+          <p class="section-desc">
+            From your idea to a fully deployed product, we're with you every step of the way. 
+            Our team brings passion, precision, and professionalism to every project we undertake.
+          </p>
+
+          <div class="about-features">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+              <div>
+                <strong>Agile Development</strong>
+                <span>Rapid iteration, transparent communication</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+              <div>
+                <strong>On-Time Delivery</strong>
+                <span>We respect deadlines. Always.</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+              <div>
+                <strong>Post-Launch Support</strong>
+                <span>6 months free maintenance included</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn-primary mt-30">
+            <i class="fas fa-handshake"></i>
+            Let's Work Together
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES SECTION ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">What We Offer</div>
+        <h2 class="section-title">Our Core <span class="text-gradient">Services</span></h2>
+        <p class="section-subtitle">End-to-end digital solutions designed to elevate your business to the next level</p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Web Development -->
+        <div class="service-card" id="service-web">
+          <div class="service-glow"></div>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="service-number">01</div>
+          </div>
+          <h3 class="service-title">Web Development</h3>
+          <p class="service-desc">
+            We build blazing-fast, SEO-optimized websites and web applications using modern stacks like React, Next.js, Node.js, and more. From landing pages to complex platforms.
+          </p>
+          <ul class="service-list">
+            <li><i class="fas fa-angle-right"></i> Custom Web Applications</li>
+            <li><i class="fas fa-angle-right"></i> CMS & Admin Dashboards</li>
+            <li><i class="fas fa-angle-right"></i> REST & GraphQL APIs</li>
+            <li><i class="fas fa-angle-right"></i> Progressive Web Apps (PWA)</li>
+          </ul>
+          <a href="#contact" class="service-link">
+            Start Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- App Development -->
+        <div class="service-card featured" id="service-app">
+          <div class="service-badge">Most Popular</div>
+          <div class="service-glow"></div>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="service-number">02</div>
+          </div>
+          <h3 class="service-title">App Development</h3>
+          <p class="service-desc">
+            Cross-platform iOS & Android mobile apps built with React Native & Flutter. Native performance, beautiful design, and seamless user experience for your customers.
+          </p>
+          <ul class="service-list">
+            <li><i class="fas fa-angle-right"></i> iOS & Android Apps</li>
+            <li><i class="fas fa-angle-right"></i> React Native / Flutter</li>
+            <li><i class="fas fa-angle-right"></i> App Store Deployment</li>
+            <li><i class="fas fa-angle-right"></i> Backend API Integration</li>
+          </ul>
+          <a href="#contact" class="service-link">
+            Start Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- UI/UX Design -->
+        <div class="service-card" id="service-uiux">
+          <div class="service-glow"></div>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <i class="fas fa-pen-nib"></i>
+            </div>
+            <div class="service-number">03</div>
+          </div>
+          <h3 class="service-title">UI/UX Design</h3>
+          <p class="service-desc">
+            Stunning, user-centered interfaces crafted in Figma. We design experiences that look extraordinary and convert visitors into customers through intuitive flows.
+          </p>
+          <ul class="service-list">
+            <li><i class="fas fa-angle-right"></i> Wireframing & Prototyping</li>
+            <li><i class="fas fa-angle-right"></i> User Research & Testing</li>
+            <li><i class="fas fa-angle-right"></i> Design Systems</li>
+            <li><i class="fas fa-angle-right"></i> Brand Identity</li>
+          </ul>
+          <a href="#contact" class="service-link">
+            Start Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- E-Commerce -->
+        <div class="service-card" id="service-ecom">
+          <div class="service-glow"></div>
+          <div class="service-icon-wrap">
+            <div class="service-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="service-number">04</div>
+          </div>
+          <h3 class="service-title">E-Commerce Solutions</h3>
+          <p class="service-desc">
+            Launch your online store with powerful, scalable e-commerce platforms. From Shopify customization to custom-built stores — we help you sell more online.
+          </p>
+          <ul class="service-list">
+            <li><i class="fas fa-angle-right"></i> Shopify / WooCommerce</li>
+            <li><i class="fas fa-angle-right"></i> Payment Integration</li>
+            <li><i class="fas fa-angle-right"></i> Inventory Management</li>
+            <li><i class="fas fa-angle-right"></i> Order & Analytics Dashboard</li>
+          </ul>
+          <a href="#contact" class="service-link">
+            Start Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO SECTION ===== -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Our Work</div>
+        <h2 class="section-title">Featured <span class="text-gradient">Projects</span></h2>
+        <p class="section-subtitle">A glimpse of what we've built for our amazing clients</p>
+      </div>
+
+      <div class="portfolio-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="app">App</button>
+        <button class="filter-btn" data-filter="ecom">E-Commerce</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-item" data-category="web">
+          <div class="portfolio-img">
+            <div class="portfolio-placeholder web-grad">
+              <i class="fas fa-laptop-code"></i>
+              <span>SaaS Dashboard</span>
+            </div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Web App</span>
+              <h4>Business Analytics SaaS</h4>
+              <p>Full-stack React & Node.js platform with real-time data visualization</p>
+              <a href="#contact" class="portfolio-cta">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item large" data-category="app">
+          <div class="portfolio-img">
+            <div class="portfolio-placeholder app-grad">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Food Delivery App</span>
+            </div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Mobile App</span>
+              <h4>FoodieGo - Delivery Platform</h4>
+              <p>React Native app with real-time tracking, payments & restaurant dashboard</p>
+              <a href="#contact" class="portfolio-cta">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="ecom">
+          <div class="portfolio-img">
+            <div class="portfolio-placeholder ecom-grad">
+              <i class="fas fa-store"></i>
+              <span>Fashion E-Commerce</span>
+            </div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-info">
+              <span class="portfolio-tag">E-Commerce</span>
+              <h4>LuxStyle Fashion Store</h4>
+              <p>Custom Shopify store with 10,000+ SKUs and integrated inventory system</p>
+              <a href="#contact" class="portfolio-cta">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="design">
+          <div class="portfolio-img">
+            <div class="portfolio-placeholder design-grad">
+              <i class="fas fa-palette"></i>
+              <span>Brand Identity</span>
+            </div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-info">
+              <span class="portfolio-tag">UI/UX Design</span>
+              <h4>FinTech App Redesign</h4>
+              <p>Complete UX overhaul increasing user retention by 65%</p>
+              <a href="#contact" class="portfolio-cta">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="web">
+          <div class="portfolio-img">
+            <div class="portfolio-placeholder web2-grad">
+              <i class="fas fa-hospital"></i>
+              <span>Healthcare Portal</span>
+            </div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Web App</span>
+              <h4>MediConnect Healthcare</h4>
+              <p>Patient management system with telemedicine & appointment scheduling</p>
+              <a href="#contact" class="portfolio-cta">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="app">
+          <div class="portfolio-img">
+            <div class="portfolio-placeholder app2-grad">
+              <i class="fas fa-dumbbell"></i>
+              <span>Fitness App</span>
+            </div>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Mobile App</span>
+              <h4>FitPulse Fitness Tracker</h4>
+              <p>iOS & Android app with AI workout recommendations and nutrition tracking</p>
+              <a href="#contact" class="portfolio-cta">View Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US / PROCESS ===== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">How We Work</div>
+        <h2 class="section-title">Our Development <span class="text-gradient">Process</span></h2>
+        <p class="section-subtitle">A proven 4-step process that ensures your project is delivered on time and beyond expectations</p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>Discovery & Planning</h3>
+            <p>We deep-dive into your business goals, target audience, and technical requirements. A detailed project roadmap is created before a single line of code is written.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <div class="step-icon"><i class="fas fa-pencil-ruler"></i></div>
+            <h3>Design & Prototype</h3>
+            <p>Our designers craft pixel-perfect wireframes and interactive prototypes in Figma. You see exactly what you're getting before development starts.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <div class="step-icon"><i class="fas fa-code"></i></div>
+            <h3>Development & Testing</h3>
+            <p>Our engineers build your product using modern, scalable architecture. Every feature is rigorously tested to ensure quality and performance at scale.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <div class="step-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Launch & Support</h3>
+            <p>We deploy your product to production with zero downtime. Post-launch, we provide 6 months of free support and maintenance to ensure smooth operation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Client Love</div>
+        <h2 class="section-title">What Our Clients <span class="text-gradient">Say</span></h2>
+      </div>
+
+      <div class="testimonials-slider" id="testimonials-slider">
+        <div class="testimonial-card active">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "SVN Solutions delivered our e-commerce platform in just 6 weeks. The quality was exceptional and they were available 24/7 for any issues. Highly recommend!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RK</div>
+            <div class="author-info">
+              <strong>Rahul Kumar</strong>
+              <span>Founder, TrendMart India</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "The mobile app they built for us has 4.8 stars on the App Store. Their attention to detail and understanding of user experience is unmatched in the industry."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PS</div>
+            <div class="author-info">
+              <strong>Priya Sharma</strong>
+              <span>CTO, HealthFirst Technologies</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "From wireframes to final product, SVN Solutions was professional, communicative, and delivered exactly what we envisioned. Our website traffic increased by 300%!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div class="author-info">
+              <strong>Ankit Mehta</strong>
+              <span>CEO, GrowthHub Startup</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-dots" id="testimonial-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING SECTION ===== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Transparent Pricing</div>
+        <h2 class="section-title">Choose Your <span class="text-gradient">Plan</span></h2>
+        <p class="section-subtitle">Flexible packages to fit every budget. Custom quotes available for enterprise projects.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon"><i class="fas fa-seedling"></i></div>
+            <h3>Starter</h3>
+            <div class="price">
+              <span class="currency">₹</span>
+              <span class="amount">25,000</span>
+              <span class="period">/ project</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> 5-page responsive website</li>
+            <li><i class="fas fa-check"></i> Mobile optimized</li>
+            <li><i class="fas fa-check"></i> Contact form</li>
+            <li><i class="fas fa-check"></i> SEO setup</li>
+            <li><i class="fas fa-check"></i> 1 month support</li>
+            <li class="disabled"><i class="fas fa-times"></i> Custom backend</li>
+            <li class="disabled"><i class="fas fa-times"></i> E-commerce</li>
+          </ul>
+          <a href="#contact" class="btn-outline full-width">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-header">
+            <div class="pricing-icon"><i class="fas fa-fire"></i></div>
+            <h3>Growth</h3>
+            <div class="price">
+              <span class="currency">₹</span>
+              <span class="amount">75,000</span>
+              <span class="period">/ project</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Full-stack web app</li>
+            <li><i class="fas fa-check"></i> Custom backend & API</li>
+            <li><i class="fas fa-check"></i> Database integration</li>
+            <li><i class="fas fa-check"></i> Admin dashboard</li>
+            <li><i class="fas fa-check"></i> 3 months support</li>
+            <li><i class="fas fa-check"></i> Performance optimization</li>
+            <li class="disabled"><i class="fas fa-times"></i> Mobile app</li>
+          </ul>
+          <a href="#contact" class="btn-primary full-width">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon"><i class="fas fa-crown"></i></div>
+            <h3>Enterprise</h3>
+            <div class="price">
+              <span class="currency">₹</span>
+              <span class="amount">Custom</span>
+            </div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Web + Mobile app</li>
+            <li><i class="fas fa-check"></i> Scalable architecture</li>
+            <li><i class="fas fa-check"></i> Cloud deployment</li>
+            <li><i class="fas fa-check"></i> Dedicated team</li>
+            <li><i class="fas fa-check"></i> 6 months support</li>
+            <li><i class="fas fa-check"></i> Analytics & monitoring</li>
+            <li><i class="fas fa-check"></i> 24/7 priority support</li>
+          </ul>
+          <a href="#contact" class="btn-outline full-width">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Let's Build Something <span class="text-gradient">Amazing</span></h2>
+        <p class="section-subtitle">Have a project in mind? We'd love to hear about it. Drop us a message and we'll get back to you within 24 hours.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          <p>Fill out the form or reach out to us directly. We're always happy to talk about your next big idea.</p>
+
+          <div class="contact-cards">
+            <div class="contact-card">
+              <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <strong>Email Us</strong>
+                <a href="mailto:contact@svnsolutions.com">contact@svnsolutions.com</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <strong>Call Us</strong>
+                <a href="tel:+919876543210">+91 98765 43210</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <strong>Office</strong>
+                <span>India (Remote & On-site)</span>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
+              <div>
+                <strong>Working Hours</strong>
+                <span>Mon-Sat, 9AM - 7PM IST</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="#" class="social-link" id="social-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link" id="social-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" id="social-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" id="social-github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link" id="social-whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required autocomplete="name" />
+                <span class="form-error" id="name-error"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
+                <span class="form-error" id="email-error"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="service">Service Required *</label>
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="App Development">App Development (iOS/Android)</option>
+                  <option value="UI/UX Design">UI/UX Design</option>
+                  <option value="E-Commerce Solutions">E-Commerce Solutions</option>
+                  <option value="Full Stack Development">Full Stack Development</option>
+                  <option value="Other">Other / Not Sure</option>
+                </select>
+                <span class="form-error" id="service-error"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="budget">Estimated Budget</label>
+              <select id="budget" name="budget">
+                <option value="" disabled selected>Select your budget range</option>
+                <option value="Under ₹25,000">Under ₹25,000</option>
+                <option value="₹25,000 - ₹75,000">₹25,000 - ₹75,000</option>
+                <option value="₹75,000 - ₹2,00,000">₹75,000 - ₹2,00,000</option>
+                <option value="₹2,00,000+">₹2,00,000+</option>
+                <option value="Let's discuss">Let's discuss</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Project Details *</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us about your project, goals, and timeline..." required></textarea>
+              <span class="form-error" id="message-error"></span>
+            </div>
+
+            <button type="submit" class="btn-primary btn-lg full-width" id="submit-btn">
+              <span class="btn-text"><i class="fas fa-paper-plane"></i> Send Message</span>
+              <span class="btn-loading" style="display:none;"><i class="fas fa-circle-notch fa-spin"></i> Sending...</span>
+            </button>
+
+            <div class="form-success" id="form-success" style="display:none;">
+              <i class="fas fa-check-circle"></i>
+              <strong>Message Sent Successfully!</strong>
+              <p>We'll get back to you within 24-48 hours. Thank you!</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-banner">
+    <div class="cta-bg">
+      <div class="cta-orb"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Join 30+ businesses who've scaled with SVN Solutions. Your success story starts here.</p>
+        <div class="cta-actions">
+          <a href="#contact" class="btn-primary btn-lg">
+            <i class="fas fa-rocket"></i> Start Your Project
+          </a>
+          <a href="tel:+919876543210" class="btn-outline-white btn-lg">
+            <i class="fas fa-phone"></i> Call Us Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                <path d="M18 2L34 11V25L18 34L2 25V11L18 2Z" fill="url(#footerLogoGrad)" />
+                <path d="M18 8L12 14L18 18L24 14L18 8Z" fill="#000" opacity="0.5" />
+                <defs>
+                  <linearGradient id="footerLogoGrad" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#ff6b00"/>
+                    <stop offset="100%" stop-color="#ffca00"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span>SVN <strong>Solutions</strong></span>
+            </div>
+            <p>Building digital products that transform businesses and create lasting impact. Your success is our mission.</p>
+            <div class="footer-social">
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services">Web Development</a></li>
+              <li><a href="#services">App Development</a></li>
+              <li><a href="#services">UI/UX Design</a></li>
+              <li><a href="#services">E-Commerce</a></li>
+              <li><a href="#contact">Custom Solutions</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#portfolio">Our Work</a></li>
+              <li><a href="#process">Our Process</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul class="footer-contact-list">
+              <li><i class="fas fa-envelope"></i><a href="mailto:contact@svnsolutions.com">contact@svnsolutions.com</a></li>
+              <li><i class="fas fa-phone"></i><a href="tel:+919876543210">+91 98765 43210</a></li>
+              <li><i class="fas fa-map-marker-alt"></i><span>India (Remote & On-site)</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year"></span> SVN Solutions. All rights reserved. | Built with ❤️ in India</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/main.js"></script>
+</body>
+</html>
