@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,6 +13,32 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [backendStatus, setBackendStatus] = useState({ checked: false, online: false, db: '' });
+
+  // Check if backend is running on mount and every 10 seconds
+  useEffect(() => {
+    const checkBackend = async () => {
+      try {
+        const res = await fetch('/api/health');
+        if (res.ok) {
+          const data = await res.json();
+          setBackendStatus({
+            checked: true,
+            online: true,
+            db: data.database || 'Connected'
+          });
+        } else {
+          setBackendStatus({ checked: true, online: false, db: 'Offline' });
+        }
+      } catch (err) {
+        setBackendStatus({ checked: true, online: false, db: 'Offline' });
+      }
+    };
+
+    checkBackend();
+    const interval = setInterval(checkBackend, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,23 +49,35 @@ export default function Contact() {
     setLoading(true);
     setError('');
 
+    // Pre-flight check: Backend must be online
+    if (!backendStatus.online) {
+      setLoading(false);
+      setError('❌ Backend server is not running! You must start the backend server (node backend/server.js) to send enquiries and save to MongoDB.');
+      return;
+    }
+
     try {
+      // Pure HTTP POST to the separate Express Backend API
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
 
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Backend responded with HTTP error ${response.status}`);
+      }
+
       const data = await response.json();
 
-      if (response.ok && data.success) {
+      if (data.success) {
         setSuccess(true);
       } else {
-        setError(data.message || 'Something went wrong. Please try again.');
+        setError(data.message || 'Backend rejected the enquiry. Please check fields.');
       }
     } catch (err) {
-      // If dev proxy or server is momentarily unreachable
-      setError('Unable to reach the server. Please call or WhatsApp us directly at +91 63002 40474.');
+      setError(`❌ Backend Connection Failed: ${err.message}. Make sure your Express backend server is running.`);
     } finally {
       setLoading(false);
     }
@@ -57,6 +95,32 @@ export default function Contact() {
           <p className="section-subtitle">
             Fill out the form below to receive a comprehensive proposal and estimate within 24 hours.
           </p>
+
+          {/* Live Backend Connection Indicator */}
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            marginTop: '20px',
+            padding: '8px 20px',
+            borderRadius: '30px',
+            background: backendStatus.online ? 'rgba(0, 230, 118, 0.1)' : 'rgba(255, 68, 68, 0.1)',
+            border: `1px solid ${backendStatus.online ? 'rgba(0, 230, 118, 0.4)' : 'rgba(255, 68, 68, 0.4)'}`,
+            fontSize: '13px',
+            fontWeight: '600',
+            color: backendStatus.online ? '#00e676' : '#ff4444'
+          }}>
+            <span style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              background: backendStatus.online ? '#00e676' : '#ff4444',
+              boxShadow: backendStatus.online ? '0 0 10px #00e676' : '0 0 10px #ff4444'
+            }}></span>
+            {backendStatus.online
+              ? `Backend Server: ONLINE (${backendStatus.db})`
+              : 'Backend Server: OFFLINE (Forms disabled until backend starts)'}
+          </div>
         </div>
 
         <div style={{
@@ -167,10 +231,10 @@ export default function Contact() {
               border: '1px solid rgba(255, 107, 0, 0.2)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--yellow)', fontWeight: '600', marginBottom: '6px' }}>
-                <i className="fas fa-database"></i> MongoDB Atlas Connected
+                <i className="fas fa-database"></i> Backend Architecture
               </div>
               <p style={{ color: 'var(--gray-300)', fontSize: '13px', margin: 0 }}>
-                Every submission is securely stored in real-time in our high-availability database cluster.
+                Frontend does NOT send emails or access the database. All operations are strictly executed by the Node/Express backend on MongoDB Atlas.
               </p>
             </div>
           </div>
@@ -204,10 +268,10 @@ export default function Contact() {
                   fontWeight: '700',
                   marginBottom: '12px'
                 }}>
-                  Inquiry Received! 🎉
+                  Enquiry Saved to Database! 🎉
                 </h3>
                 <p style={{ color: 'var(--gray-300)', fontSize: '15px', lineHeight: '1.7', marginBottom: '24px' }}>
-                  Thank you, <strong>{formData.name}</strong>. Your project specifications have been logged into our database. Our technical team will review and reply within 24 hours.
+                  Thank you, <strong>{formData.name}</strong>. Your enquiry was received by the Express backend and saved to MongoDB Atlas.
                 </p>
                 <button
                   onClick={() => {
@@ -235,7 +299,8 @@ export default function Contact() {
                     background: 'rgba(255, 68, 68, 0.1)',
                     border: '1px solid rgba(255, 68, 68, 0.3)',
                     color: '#ff6666',
-                    fontSize: '14px'
+                    fontSize: '14px',
+                    lineHeight: '1.5'
                   }}>
                     {error}
                   </div>
@@ -393,15 +458,20 @@ export default function Contact() {
                   type="submit"
                   disabled={loading}
                   className="btn-primary"
-                  style={{ width: '100%', justifyContent: 'center', marginTop: '10px' }}
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    marginTop: '10px',
+                    opacity: backendStatus.online ? 1 : 0.6
+                  }}
                 >
                   {loading ? (
                     <span>
-                      <i className="fas fa-spinner fa-spin"></i> Submitting to Database...
+                      <i className="fas fa-spinner fa-spin"></i> Contacting Backend API...
                     </span>
                   ) : (
                     <span>
-                      <i className="fas fa-paper-plane"></i> Send Project Inquiry
+                      <i className="fas fa-paper-plane"></i> Send Project Enquiry
                     </span>
                   )}
                 </button>
