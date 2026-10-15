@@ -110,6 +110,37 @@ router.post('/', async (req, res) => {
         });
     }
 
+    // 2b. Trigger EmailJS REST API to parameshyerra123@gmail.com
+    const emailjsPublicKey = process.env.EMAILJS_PUBLIC_KEY;
+    const emailjsServiceId = process.env.EMAILJS_SERVICE_ID || 'service_5vyks0q';
+    const emailjsTemplateId = process.env.EMAILJS_TEMPLATE_ID || 'template_xtmz8n9';
+
+    if (emailjsPublicKey) {
+      fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: emailjsServiceId,
+          template_id: emailjsTemplateId,
+          user_id: emailjsPublicKey,
+          template_params: {
+            name: cleanData.name,
+            from_name: cleanData.name,
+            email: cleanData.email,
+            from_email: cleanData.email,
+            reply_to: cleanData.email,
+            phone: cleanData.phone,
+            service: cleanData.service,
+            budget: cleanData.budget,
+            message: cleanData.message,
+            to_email: 'parameshyerra123@gmail.com'
+          }
+        })
+      })
+      .then(() => console.log('📧 EmailJS notification delivered to parameshyerra123@gmail.com'))
+      .catch((e) => console.warn('⚠️ EmailJS REST notice:', e.message));
+    }
+
     // 3. Respond immediately to the client!
     return res.status(200).json({
       success: true,

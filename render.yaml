@@ -13,11 +13,9 @@ services:
       - key: MONGODB_URI
         value: mongodb+srv://parameshyerra123_db_user:Z7pzoNlFYDnEMzGf@cluster0.sffwntt.mongodb.net/svn_solutions?retryWrites=true&w=majority
       - key: EMAIL_USER
-        value: parameshyarra80@gmail.com
-      - key: EMAIL_PASS
-        value: Paramesh@20
+        value: parameshyerra123@gmail.com
       - key: CONTACT_EMAIL
-        value: parameshyarra80@gmail.com
+        value: parameshyerra123@gmail.com
       - key: COMPANY_NAME
         value: SVN Solutions
       - key: COMPANY_PHONE

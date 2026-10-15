@@ -118,8 +118,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:parameshyarra80@gmail.com" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>
-                  <i className="fas fa-envelope" style={{ marginRight: '8px' }}></i> parameshyarra80@gmail.com
+                <a href="mailto:parameshyerra123@gmail.com" style={{ color: 'var(--gray-300)', fontSize: '14px', textDecoration: 'none' }}>
+                  <i className="fas fa-envelope" style={{ marginRight: '8px' }}></i> parameshyerra123@gmail.com
                 </a>
               </li>
               <li>

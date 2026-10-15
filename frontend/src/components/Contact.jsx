@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -23,6 +24,30 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    // Trigger EmailJS notification to parameshyerra123@gmail.com
+    const serviceId = 'service_5vyks0q';
+    const templateId = 'template_xtmz8n9';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || window.EMAILJS_PUBLIC_KEY;
+
+    const emailParams = {
+      name: formData.name,
+      from_name: formData.name,
+      email: formData.email,
+      from_email: formData.email,
+      reply_to: formData.email,
+      phone: formData.phone || 'Not provided',
+      service: formData.service,
+      budget: formData.budget,
+      message: formData.message,
+      to_email: 'parameshyerra123@gmail.com'
+    };
+
+    if (publicKey) {
+      emailjs.send(serviceId, templateId, emailParams, publicKey)
+        .then(() => console.log('✅ EmailJS delivered to parameshyerra123@gmail.com'))
+        .catch((err) => console.warn('⚠️ EmailJS delivery notice:', err));
+    }
 
     try {
       // Determines endpoint dynamically:
@@ -135,7 +160,7 @@ export default function Contact() {
                 </div>
               </a>
 
-              <a href="mailto:parameshyarra80@gmail.com" style={{
+              <a href="mailto:parameshyerra123@gmail.com" style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '16px',
@@ -157,7 +182,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div style={{ fontSize: '12px', color: 'var(--gray-300)', textTransform: 'uppercase' }}>Email Inquiry</div>
-                  <div style={{ fontSize: '16px', fontWeight: '700' }}>parameshyarra80@gmail.com</div>
+                  <div style={{ fontSize: '16px', fontWeight: '700' }}>parameshyerra123@gmail.com</div>
                 </div>
               </a>
 
