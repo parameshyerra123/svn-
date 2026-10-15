@@ -25,29 +25,36 @@ export default function Contact() {
     setLoading(true);
     setError('');
 
-    // Trigger EmailJS notification to parameshyerra123@gmail.com
+    // 1. Send Email Notification directly to parameshyerra123@gmail.com via EmailJS
     const serviceId = 'service_5vyks0q';
     const templateId = 'template_xtmz8n9';
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || window.EMAILJS_PUBLIC_KEY;
+    const publicKey = 'DeXLxPCzpCLsTySqi';
 
     const emailParams = {
       name: formData.name,
       from_name: formData.name,
+      user_name: formData.name,
       email: formData.email,
       from_email: formData.email,
+      user_email: formData.email,
       reply_to: formData.email,
       phone: formData.phone || 'Not provided',
+      user_phone: formData.phone || 'Not provided',
       service: formData.service,
+      service_name: formData.service,
       budget: formData.budget,
       message: formData.message,
-      to_email: 'parameshyerra123@gmail.com'
+      to_email: 'parameshyerra123@gmail.com',
+      to_name: 'Paramesh Yerra'
     };
 
-    if (publicKey) {
-      emailjs.send(serviceId, templateId, emailParams, publicKey)
-        .then(() => console.log('✅ EmailJS delivered to parameshyerra123@gmail.com'))
-        .catch((err) => console.warn('⚠️ EmailJS delivery notice:', err));
-    }
+    emailjs.send(serviceId, templateId, emailParams, publicKey)
+      .then((res) => {
+        console.log('✅ EmailJS delivered to parameshyerra123@gmail.com:', res.status, res.text);
+      })
+      .catch((err) => {
+        console.warn('⚠️ EmailJS delivery error:', err);
+      });
 
     try {
       // Determines endpoint dynamically:
