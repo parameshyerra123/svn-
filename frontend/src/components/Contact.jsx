@@ -34,16 +34,32 @@ export default function Contact() {
       name: formData.name,
       from_name: formData.name,
       user_name: formData.name,
+      customer_name: formData.name,
+      client_name: formData.name,
+
       email: formData.email,
       from_email: formData.email,
       user_email: formData.email,
+      customer_email: formData.email,
+      client_email: formData.email,
       reply_to: formData.email,
+
       phone: formData.phone || 'Not provided',
       user_phone: formData.phone || 'Not provided',
+      customer_phone: formData.phone || 'Not provided',
+      phone_number: formData.phone || 'Not provided',
+
       service: formData.service,
       service_name: formData.service,
+      project_service: formData.service,
+
       budget: formData.budget,
+      project_budget: formData.budget,
+
       message: formData.message,
+      project_message: formData.message,
+      description: formData.message,
+
       to_email: 'parameshyerra123@gmail.com',
       to_name: 'Paramesh Yerra'
     };
