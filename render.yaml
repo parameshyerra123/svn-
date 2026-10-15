@@ -11,6 +11,8 @@ services:
         value: production
       - key: PORT
         value: 10000
+      - key: MONGODB_URI
+        value: mongodb+srv://parameshyerra123_db_user:Z7pzoNlFYDnEMzGf@cluster0.sffwntt.mongodb.net/svn_solutions?retryWrites=true&w=majority
       - key: EMAIL_USER
         value: parameshyarra80@gmail.com
       - key: EMAIL_PASS

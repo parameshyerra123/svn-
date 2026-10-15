@@ -95,8 +95,8 @@ function startServer(port) {
     console.log('\n╔═════════════════════════════════════════════════════════╗');
     console.log('║               🚀 SVN SOLUTIONS IS LIVE!                 ║');
     console.log(`║  🌐 Website:    http://localhost:${port}                   ║`);
-    console.log(`║  🩺 API Health: http://localhost:${port}/api/health          ║`);
-    console.log(`║  🗄️  Database:   ${(getDbStatus() ? 'MongoDB Atlas CONNECTED' : 'Awaiting MONGODB_URI').padEnd(30)}║`);
+    const dbStatus = getDbStatus() ? 'MongoDB Atlas CONNECTED' : 'Connecting to MongoDB Atlas...';
+    console.log(`║  🗄️  Database:   ${dbStatus.padEnd(30)}║`);
     console.log('╚═════════════════════════════════════════════════════════╝\n');
   });
 
