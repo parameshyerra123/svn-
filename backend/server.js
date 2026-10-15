@@ -36,7 +36,9 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 // Serve static frontend files
-app.use(express.static(path.join(__dirname, '../frontend')));
+// Works locally (../frontend) and on Render (../frontend)
+const frontendPath = path.join(__dirname, '../frontend');
+app.use(express.static(frontendPath));
 
 // API Routes
 app.use('/api/contact', contactRoute);
@@ -53,7 +55,7 @@ app.get('/api/health', (req, res) => {
 
 // Serve index.html for all non-API routes (SPA support)
 app.get('/{*path}', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 // Global error handler

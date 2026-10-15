@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: svn-solutions
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: EMAIL_USER
+        value: parameshyarra80@gmail.com
+      - key: EMAIL_PASS
+        value: Paramesh@20
+      - key: CONTACT_EMAIL
+        value: parameshyarra80@gmail.com
+      - key: COMPANY_NAME
+        value: SVN Solutions
