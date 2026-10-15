@@ -121,7 +121,11 @@ router.post('/', async (req, res) => {
         await transporter.sendMail(clientMailOptions);
         console.log('📧 Notification emails sent successfully');
       } catch (mailErr) {
-        console.warn('⚠️  Email delivery skipped or failed:', mailErr.message);
+        if (mailErr.message.includes('535') || mailErr.message.includes('BadCredentials')) {
+          console.log('ℹ️  Note: Gmail requires a 16-character App Password (https://myaccount.google.com/apppasswords).');
+        } else {
+          console.warn('⚠️  Email notice:', mailErr.message);
+        }
       }
     }
 

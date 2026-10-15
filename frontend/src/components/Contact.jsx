@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,32 +13,6 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
-  const [backendStatus, setBackendStatus] = useState({ checked: false, online: false, db: '' });
-
-  // Check if backend is running on mount and every 10 seconds
-  useEffect(() => {
-    const checkBackend = async () => {
-      try {
-        const res = await fetch('/api/health');
-        if (res.ok) {
-          const data = await res.json();
-          setBackendStatus({
-            checked: true,
-            online: true,
-            db: data.database || 'Connected'
-          });
-        } else {
-          setBackendStatus({ checked: true, online: false, db: 'Offline' });
-        }
-      } catch (err) {
-        setBackendStatus({ checked: true, online: false, db: 'Offline' });
-      }
-    };
-
-    checkBackend();
-    const interval = setInterval(checkBackend, 10000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -48,13 +22,6 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     setError('');
-
-    // Pre-flight check: Backend must be online
-    if (!backendStatus.online) {
-      setLoading(false);
-      setError('❌ Backend server is not running! You must start the backend server (node backend/server.js) to send enquiries and save to MongoDB.');
-      return;
-    }
 
     try {
       // Pure HTTP POST to the separate Express Backend API
@@ -66,7 +33,10 @@ export default function Contact() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `Backend responded with HTTP error ${response.status}`);
+        if (response.status === 502 || response.status === 503) {
+          throw new Error('Backend server is OFFLINE. Start it with: cd backend && node server.js');
+        }
+        throw new Error(errorData.message || `Backend responded with error code ${response.status}`);
       }
 
       const data = await response.json();
@@ -74,10 +44,10 @@ export default function Contact() {
       if (data.success) {
         setSuccess(true);
       } else {
-        setError(data.message || 'Backend rejected the enquiry. Please check fields.');
+        setError(data.message || 'Backend rejected the enquiry.');
       }
     } catch (err) {
-      setError(`❌ Backend Connection Failed: ${err.message}. Make sure your Express backend server is running.`);
+      setError(`❌ Backend Error: ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -95,32 +65,6 @@ export default function Contact() {
           <p className="section-subtitle">
             Fill out the form below to receive a comprehensive proposal and estimate within 24 hours.
           </p>
-
-          {/* Live Backend Connection Indicator */}
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            marginTop: '20px',
-            padding: '8px 20px',
-            borderRadius: '30px',
-            background: backendStatus.online ? 'rgba(0, 230, 118, 0.1)' : 'rgba(255, 68, 68, 0.1)',
-            border: `1px solid ${backendStatus.online ? 'rgba(0, 230, 118, 0.4)' : 'rgba(255, 68, 68, 0.4)'}`,
-            fontSize: '13px',
-            fontWeight: '600',
-            color: backendStatus.online ? '#00e676' : '#ff4444'
-          }}>
-            <span style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: backendStatus.online ? '#00e676' : '#ff4444',
-              boxShadow: backendStatus.online ? '0 0 10px #00e676' : '0 0 10px #ff4444'
-            }}></span>
-            {backendStatus.online
-              ? `Backend Server: ONLINE (${backendStatus.db})`
-              : 'Backend Server: OFFLINE (Forms disabled until backend starts)'}
-          </div>
         </div>
 
         <div style={{
@@ -231,10 +175,10 @@ export default function Contact() {
               border: '1px solid rgba(255, 107, 0, 0.2)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--yellow)', fontWeight: '600', marginBottom: '6px' }}>
-                <i className="fas fa-database"></i> Backend Architecture
+                <i className="fas fa-database"></i> Pure Backend Architecture
               </div>
               <p style={{ color: 'var(--gray-300)', fontSize: '13px', margin: 0 }}>
-                Frontend does NOT send emails or access the database. All operations are strictly executed by the Node/Express backend on MongoDB Atlas.
+                Frontend does NOT connect directly to MongoDB. All enquiries are sent to the Node/Express backend API which stores them in your MongoDB Atlas cluster.
               </p>
             </div>
           </div>
@@ -268,10 +212,10 @@ export default function Contact() {
                   fontWeight: '700',
                   marginBottom: '12px'
                 }}>
-                  Enquiry Saved to Database! 🎉
+                  Enquiry Saved to MongoDB! 🎉
                 </h3>
                 <p style={{ color: 'var(--gray-300)', fontSize: '15px', lineHeight: '1.7', marginBottom: '24px' }}>
-                  Thank you, <strong>{formData.name}</strong>. Your enquiry was received by the Express backend and saved to MongoDB Atlas.
+                  Thank you, <strong>{formData.name}</strong>. Your enquiry has been received and stored in your MongoDB Atlas database.
                 </p>
                 <button
                   onClick={() => {
@@ -294,7 +238,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {error && (
                   <div style={{
-                    padding: '12px 16px',
+                    padding: '14px 18px',
                     borderRadius: '8px',
                     background: 'rgba(255, 68, 68, 0.1)',
                     border: '1px solid rgba(255, 68, 68, 0.3)',
@@ -461,8 +405,7 @@ export default function Contact() {
                   style={{
                     width: '100%',
                     justifyContent: 'center',
-                    marginTop: '10px',
-                    opacity: backendStatus.online ? 1 : 0.6
+                    marginTop: '10px'
                   }}
                 >
                   {loading ? (
