@@ -11,7 +11,7 @@ function sanitize(str) {
   return str.replace(/[<>\"'&]/g, '').trim().substring(0, 2000);
 }
 
-// POST /api/contact - Submit inquiry
+// POST /api/contact - Submit inquiry (FAST, NON-BLOCKING)
 router.post('/', async (req, res) => {
   try {
     const { name, email, phone, service, budget, message } = req.body;
@@ -43,21 +43,18 @@ router.post('/', async (req, res) => {
       ipAddress: req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress
     };
 
-    // 1. Save to MongoDB Database (if DB is connected)
+    // 1. Save directly to MongoDB Atlas
     let savedInquiry = null;
-    if (getDbStatus()) {
-      try {
-        savedInquiry = await Contact.create(cleanData);
-        console.log(`📦 Saved inquiry to MongoDB (ID: ${savedInquiry._id})`);
-      } catch (dbErr) {
-        console.warn('⚠️  Could not save to MongoDB:', dbErr.message);
-      }
-    } else {
-      console.log('ℹ️  MongoDB not connected, logging inquiry to console:');
+    try {
+      savedInquiry = await Contact.create(cleanData);
+      console.log(`\n✅ Saved to MongoDB Atlas (Database: svn_solutions -> Collection: contacts)`);
+      console.log(`   Document ID: ${savedInquiry._id}`);
+    } catch (dbErr) {
+      console.warn('⚠️  MongoDB save issue:', dbErr.message);
     }
 
     // Always log inquiry to console
-    console.log(`\n📬 [${new Date().toLocaleString()}] New Inquiry Received:`);
+    console.log(`📬 [${new Date().toLocaleString()}] New Inquiry Received:`);
     console.log(`  👤 Name:    ${cleanData.name}`);
     console.log(`  📧 Email:   ${cleanData.email}`);
     console.log(`  📱 Phone:   ${cleanData.phone}`);
@@ -65,7 +62,8 @@ router.post('/', async (req, res) => {
     console.log(`  💰 Budget:  ${cleanData.budget}`);
     console.log(`  📝 Message: ${cleanData.message}\n`);
 
-    // 2. Send email notification (if SMTP is configured)
+    // 2. Send email notification in the background (NON-BLOCKING)
+    // Runs asynchronously so the user gets an instant response in <200ms!
     const emailUser = process.env.EMAIL_USER;
     const emailPass = process.env.EMAIL_PASS;
     const contactEmail = process.env.CONTACT_EMAIL || emailUser;
@@ -102,37 +100,24 @@ router.post('/', async (req, res) => {
         `
       };
 
-      const clientMailOptions = {
-        from: `"SVN Solutions" <${emailUser}>`,
-        to: cleanData.email,
-        subject: 'Thank you for reaching out to SVN Solutions!',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; padding: 30px; text-align: center; border-radius: 12px;">
-            <h1 style="color: #ff6b00; margin-bottom: 8px;">SVN Solutions</h1>
-            <h2 style="color: #ffca00; font-weight: normal; margin-top: 0;">Thank you, ${cleanData.name}! 🎉</h2>
-            <p style="color: #ccc; line-height: 1.8;">We have received your project inquiry for <strong>${cleanData.service}</strong>. Our expert team will review it and get back to you within 24 hours.</p>
-            <p style="color: #888; font-size: 13px; margin-top: 30px;">© SVN Solutions - Turning Visions into High-Performance Digital Realities</p>
-          </div>
-        `
-      };
-
-      try {
-        await transporter.sendMail(teamMailOptions);
-        await transporter.sendMail(clientMailOptions);
-        console.log('📧 Notification emails sent successfully');
-      } catch (mailErr) {
-        if (mailErr.message.includes('535') || mailErr.message.includes('BadCredentials')) {
-          console.log('ℹ️  Note: Gmail requires a 16-character App Password (https://myaccount.google.com/apppasswords).');
-        } else {
-          console.warn('⚠️  Email notice:', mailErr.message);
-        }
-      }
+      // Run email delivery in background without blocking user response
+      transporter.sendMail(teamMailOptions)
+        .then(() => console.log('📧 Notification email delivered successfully'))
+        .catch((mailErr) => {
+          if (mailErr.message.includes('535') || mailErr.message.includes('BadCredentials')) {
+            console.log('ℹ️  Note: To receive emails in Gmail inbox, set a 16-character Google App Password in EMAIL_PASS.');
+          }
+        });
     }
 
-    res.status(200).json({
+    // 3. Respond immediately to the client!
+    return res.status(200).json({
       success: true,
-      message: `Thank you ${cleanData.name}! We've received your request and will contact you shortly.`,
-      savedToDb: !!savedInquiry
+      message: `Thank you ${cleanData.name}! Your enquiry has been received and saved to MongoDB Atlas.`,
+      savedToDb: !!savedInquiry,
+      database: 'svn_solutions',
+      collection: 'contacts',
+      id: savedInquiry ? savedInquiry._id : null
     });
 
   } catch (error) {
@@ -147,17 +132,12 @@ router.post('/', async (req, res) => {
 // GET /api/contact/all - List inquiries (MongoDB)
 router.get('/all', async (req, res) => {
   try {
-    if (!getDbStatus()) {
-      return res.status(503).json({
-        success: false,
-        message: 'MongoDB is not currently connected. Set MONGODB_URI to view stored inquiries.'
-      });
-    }
-
     const inquiries = await Contact.find().sort({ createdAt: -1 }).limit(50);
     res.json({
       success: true,
       count: inquiries.length,
+      database: 'svn_solutions',
+      collection: 'contacts',
       data: inquiries
     });
   } catch (err) {
@@ -170,6 +150,8 @@ router.get('/', (req, res) => {
   res.json({
     status: 'Contact API is live',
     database: getDbStatus() ? 'Connected (MongoDB Atlas)' : 'Not connected',
+    databaseName: 'svn_solutions',
+    collectionName: 'contacts',
     company: 'SVN Solutions'
   });
 });

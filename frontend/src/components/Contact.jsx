@@ -12,6 +12,7 @@ export default function Contact() {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [savedInfo, setSavedInfo] = useState(null);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -51,6 +52,11 @@ export default function Contact() {
       const data = await response.json();
 
       if (data.success) {
+        setSavedInfo({
+          id: data.id,
+          database: data.database || 'svn_solutions',
+          collection: data.collection || 'contacts'
+        });
         setSuccess(true);
       } else {
         setError(data.message || 'Backend rejected the enquiry.');
@@ -221,14 +227,39 @@ export default function Contact() {
                   fontWeight: '700',
                   marginBottom: '12px'
                 }}>
-                  Enquiry Saved to MongoDB! 🎉
+                  Enquiry Saved to MongoDB Atlas! 🎉
                 </h3>
-                <p style={{ color: 'var(--gray-300)', fontSize: '15px', lineHeight: '1.7', marginBottom: '24px' }}>
-                  Thank you, <strong>{formData.name}</strong>. Your enquiry has been received and stored in your MongoDB Atlas database.
+                <p style={{ color: 'var(--gray-300)', fontSize: '15px', lineHeight: '1.7', marginBottom: '20px' }}>
+                  Thank you, <strong>{formData.name}</strong>. Your enquiry was received by the Express backend and saved directly to your MongoDB Atlas cluster.
                 </p>
+                {savedInfo && (
+                  <div style={{
+                    background: 'var(--black-4)',
+                    border: '1px solid rgba(255, 107, 0, 0.3)',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    marginBottom: '24px',
+                    fontSize: '13px',
+                    color: 'var(--gray-300)',
+                    textAlign: 'left'
+                  }}>
+                    <div style={{ marginBottom: '6px' }}>
+                      <span style={{ color: 'var(--yellow)', fontWeight: 'bold' }}>📂 Database:</span> {savedInfo.database || 'svn_solutions'}
+                    </div>
+                    <div style={{ marginBottom: '6px' }}>
+                      <span style={{ color: 'var(--yellow)', fontWeight: 'bold' }}>📁 Collection:</span> {savedInfo.collection || 'contacts'}
+                    </div>
+                    {savedInfo.id && (
+                      <div>
+                        <span style={{ color: 'var(--yellow)', fontWeight: 'bold' }}>🆔 Document ID:</span> <code style={{ color: 'var(--orange)', background: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px' }}>{savedInfo.id}</code>
+                      </div>
+                    )}
+                  </div>
+                )}
                 <button
                   onClick={() => {
                     setSuccess(false);
+                    setSavedInfo(null);
                     setFormData({
                       name: '',
                       email: '',

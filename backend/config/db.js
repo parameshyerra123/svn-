@@ -12,6 +12,7 @@ const connectDB = async () => {
 
   try {
     const conn = await mongoose.connect(uri, {
+      dbName: 'svn_solutions', // Explicitly use svn_solutions database
       serverSelectionTimeoutMS: 8000,
     });
     isConnected = true;
