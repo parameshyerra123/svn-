@@ -2,11 +2,11 @@
   "name": "svn-solutions",
   "version": "1.0.0",
   "description": "SVN Solutions - Web & App Development Company Website",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "node backend/server.js",
-    "build": "npm install"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "npm install && cd backend && npm install"
   },
   "dependencies": {
     "body-parser": "^2.3.0",
